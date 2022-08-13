@@ -1,6 +1,5 @@
 const { Pool } = require('pg')
 
-
 const config = {
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -9,9 +8,18 @@ const config = {
   port: process.env.DB_PORT,
 };
 
-const pool = new Pool(config);//or can give new Pool() without config inside
+const pool = new Pool(config);
 
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-}
+module.exports = pool
+
+//1.can give new Pool() without config inside
+
+//2. pool.connect(() => {
+//   console.log(`Connected to database on port ${config.port}`);
+// });
+
+// module.exports = pool
+//  {
+//   query: (text, params) => pool.query(text, params),
+// }
 

@@ -4,6 +4,9 @@ const morgan = require("morgan")
 const app = express();
 app.use(morgan("default"));
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
 const moviesRoutes = require("./routes/api/movies")
 
 const PORT = process.env.PORT || 5000;
@@ -14,7 +17,7 @@ const PORT = process.env.PORT || 5000;
 //   console.log("middleware is running");
 //   next();
 // })
-app.use('/api/v1', moviesRoutes);
+app.use('/api/v1/movies', moviesRoutes);
 
 app.listen(PORT, () => {
   console.log("app listening on port 3000")
