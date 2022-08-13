@@ -2,7 +2,8 @@ require('dotenv').config()
 const express = require('express');
 const morgan = require("morgan")
 const app = express();
-app.use(morgan("default"))
+app.use(morgan("default"));
+
 const moviesRoutes = require("./routes/api/movies")
 
 const PORT = process.env.PORT || 5000;
