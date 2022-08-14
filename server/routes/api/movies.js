@@ -60,7 +60,7 @@ router.post("/", async (req, res) => {
     const result = await db.query(`INSERT INTO movies(name,year,genre) VALUES ($1,$2,$3) RETURNING *`,
       [req.body.name, req.body.year, req.body.genre]);
     console.log(result.rows[0])
-    res.status(204).json({
+    res.status(200).json({
       status: "success",
       result: result.rows[0]
     });

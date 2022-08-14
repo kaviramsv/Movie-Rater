@@ -2,11 +2,11 @@ require('dotenv').config()
 const express = require('express');
 const morgan = require("morgan")
 const app = express();
-app.use(morgan("default"));
-
-app.use(express.json())
+const cors = require('cors');
+// app.use(morgan("default"));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(cors());
 const moviesRoutes = require("./routes/api/movies")
 
 const PORT = process.env.PORT || 5000;
