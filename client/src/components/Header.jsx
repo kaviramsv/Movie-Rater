@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Header = () => {
+const Header = ({ heading }) => {
   return (
     <div>
-      <p className="font-weight-light text-primary display-4 text-center align-items-center">Movie Rater </p>
+      <p className="font-weight-light text-primary display-4 text-center align-items-center">{heading} </p>
     </div>
   )
 }

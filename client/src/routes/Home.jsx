@@ -6,7 +6,7 @@ import MovieList from '../components/MovieList'
 const Home = () => {
   return (
     <>
-      <Header />
+      <Header heading="Movie Rater" />
       <AddMovieForm />
       <MovieList />
     </>

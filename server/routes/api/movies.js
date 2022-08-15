@@ -22,14 +22,16 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   let id = req.params.id;
-  console.log("id is", id);
+
   try {
-    let result = await db.query(`SELECT * FROM movies WHERE id = $1 `, [id]);
-    console.log(res);
+    let movie = await db.query(`SELECT * FROM movies WHERE id = $1 `, [id]);
+    let review = await db.query(`SELECT * FROM reviews WHERE movie_id = $1 `, [id]);
+    console.log("review", review);
     res.status(200).json({
       status: "success",
       data: {
-        movie: result.rows[0]
+        movie: movie.rows[0],
+        review: review.rows
       }
     })
   } catch (err) {
