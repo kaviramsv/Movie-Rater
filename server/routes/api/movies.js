@@ -6,7 +6,10 @@ const db = require("../../db")
 
 router.get("/", async (req, res) => {
   try {
-    const result = await db.query("SELECT * FROM movies");
+
+
+    const result = await db.query("SELECT * FROM movies left join (select movie_id, count(*), AVG(rating) as average_rating from reviews group by movie_id) reviews on movies.id = reviews.movie_id; ");
+    console.log(result);
     res.status(200).json({
       status: "success",
       results: result.rows.length,
@@ -24,7 +27,10 @@ router.get("/:id", async (req, res) => {
   let id = req.params.id;
 
   try {
-    let movie = await db.query(`SELECT * FROM movies WHERE id = $1 `, [id]);
+    // let movie = await db.query(`SELECT * FROM movies WHERE id = $1 `, [id]);
+    const movie = await db.query("SELECT * FROM movies left join (select movie_id, count(*), AVG(rating) as average_rating from reviews group by movie_id) reviews on movies.id = reviews.movie_id where id = $1; ", [id]);
+    console.log(movie);
+
     let review = await db.query(`SELECT * FROM reviews WHERE movie_id = $1 `, [id]);
     console.log("review", review);
     res.status(200).json({
@@ -70,6 +76,24 @@ router.post("/", async (req, res) => {
     console.log(err)
   }
 })
+
+router.post("/:id/reviews", async (req, res) => {
+  console.log(req);
+  try {
+    const newReview = await db.query("INSERT INTO REVIEWS(movie_id,name,review,rating) Values($1,$2,$3,$4) returning *",
+      [req.params.id, req.body.name, req.body.review, req.body.rating]);
+    console.log(newReview.rows);
+    res.status(200).json({
+      data: {
+        review: newReview.rows[0],
+      }
+    })
+
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 
 router.delete("/:id", async (req, res) => {
   try {
