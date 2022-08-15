@@ -8,9 +8,9 @@ const Rating = ({ rating }) => {
     if (i <= rating) {
       stars.push(<i key={i} className="fas fa-star "></i>);
     } else if (i === Math.ceil(rating) && !Number.isInteger(rating)) {
-      stars.push(<i key={i} className="fas fa-star-half-alt text-warning"></i>);
+      stars.push(<i key={i} className="fas fa-star-half-alt "></i>);
     } else {
-      stars.push(<i key={i} className="far fa-star text-warning"></i>);
+      stars.push(<i key={i} className="far fa-star "></i>);
     }
   }
   return <>{stars}</>;
