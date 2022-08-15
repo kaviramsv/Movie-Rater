@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import MovieFinder from '../apis/MovieFinder'
 import { MovieContext } from '../context/moviecontext'
 import { Link, useNavigate } from 'react-router-dom'
+import Rating from './Rating'
 const MovieList = () => {
   const { movies, setMovies, deleteMovie } = useContext(MovieContext);
   const navigate = useNavigate();
@@ -32,6 +33,19 @@ const MovieList = () => {
     }
   }
 
+  const renderRating = (movie) => {
+    if (!movie.count) {
+      return <span>0 reviews</span>;
+    }
+    return (
+      <>
+        <Rating rating={movie.id} />
+        <span >({movie.count})</span>
+      </>
+    );
+
+  }
+
   const handleUpdate = (id) => {
     navigate(`/update/${id}`);
   }
@@ -55,7 +69,7 @@ const MovieList = () => {
                 <td><Link to={`/detail/${movie.id}`}>{movie.name}</Link></td>
                 <td>{movie.year}</td>
                 <td>{movie.genre}</td>
-                <td>***</td>
+                <td>{renderRating(movie)}</td>
                 <td><button className="btn btn-warning" onClick={() => handleUpdate(movie.id)}>Update</button></td>
                 <td><button className="btn btn-outline-danger" onClick={() => handleDelete(movie.id)}>Delete</button></td>
               </tr>
