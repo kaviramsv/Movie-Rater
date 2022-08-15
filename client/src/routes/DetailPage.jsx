@@ -32,7 +32,10 @@ const DetailPage = () => {
   return (<div>
     {selectedMovie && (
       <>
-        <Header heading="Reviews" />
+        <Header heading={selectedMovie.movie.name} />
+        <div className="text-center">
+          <Rating rating={selectedMovie.movie.average_rating} />
+        </div>
         <AddReview />
         <div className="mt-3">
           <Reviews reviews={selectedMovie.review} />
