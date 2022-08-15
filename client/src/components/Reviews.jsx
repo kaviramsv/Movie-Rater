@@ -7,7 +7,7 @@ const Reviews = ({ reviews }) => {
     <div className="row row-cols-3 mb-2" >
       {reviews.map(review => {
         return (
-          <div className="card text-bg-warning m-3 mt-5" style={{ maxWidth: "30%" }}>
+          <div key={review.id} className="card text-bg-warning m-3 mt-5" style={{ maxWidth: "30%" }}>
             <div className="card-header"><Rating rating={review.rating} /></div>
             <div className="card-body">
               <h5 className="card-title">{review.name}</h5>
