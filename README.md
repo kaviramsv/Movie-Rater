@@ -5,7 +5,7 @@ Th app lets user add a new movie,edit a movie ,delete a movie if there are no as
 
 There app uses Postgres database which serves data to a Rest API which is accessed/modified by a react front end.
 
-![](images///MovieRater1.png)
+![](client//images//MovieRater1.png)
 
 ![](images//MovieRater2.png)
 
