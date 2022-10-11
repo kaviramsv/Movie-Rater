@@ -1,5 +1,5 @@
 # Movie-Rater
-This is a PERN Stack app that displays a list of movies and their corrsponding reviews.
+This is a PERN Stack app that displays a list of movies and their corrsponding ratings.
 
 Th app lets user add a new movie,edit a movie ,delete a movie if there are no associated reviews and also add revivews to a particular movie.
 
